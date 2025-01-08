@@ -1,141 +1,180 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import Link from 'next/link'
 import Image from 'next/image'
-import AiChatBox from '../../components/reskin/AiChatBox'
 
 export default function ReskinPage() {
-  const [isChatOpen, setIsChatOpen] = useState(false)
-  const [selectedFile, setSelectedFile] = useState<File | null>(null)
-  const fileInputRef = useRef<HTMLInputElement>(null)
-
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (file) {
-      setSelectedFile(file)
-    }
-  }
-
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0B1120] text-gray-900 dark:text-white transition-colors">
-      {/* Header */}
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-8 sm:mb-12">
-          <div>
-            <h1 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4">Reskin Presentation</h1>
-            <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg">
-              Transform your existing presentations with modern designs
-            </p>
+    <div className="min-h-screen bg-gray-50 dark:bg-[#0B1120]">
+      {/* Navigation */}
+      <nav className="bg-white dark:bg-[#0B1120] border-b border-gray-200/50 dark:border-gray-800/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <Link href="/" className="flex items-center gap-2">
+                <div className="w-8 h-8">
+                  <svg viewBox="0 0 24 24" className="w-full h-full">
+                    <defs>
+                      <linearGradient id="auraGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style={{ stopColor: '#A78BFA' }} />
+                        <stop offset="100%" style={{ stopColor: '#7C3AED' }} />
+                      </linearGradient>
+                    </defs>
+                    <path fill="url(#auraGradient)" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                  </svg>
+                </div>
+                <span className="font-semibold text-lg text-gray-900 dark:text-white">Aura</span>
+              </Link>
+              <div className="ml-8 flex items-center space-x-1">
+                <Link href="/playground" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white px-3 py-2 text-sm font-medium rounded-md hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                  Playground
+                </Link>
+                <Link href="/marketplace" className="text-gray-900 dark:text-white px-3 py-2 text-sm font-medium rounded-md bg-gray-50 dark:bg-gray-800/50">
+                  Marketplace
+                </Link>
+              </div>
+            </div>
           </div>
-          <button
-            onClick={() => setIsChatOpen(!isChatOpen)}
-            className="flex items-center justify-center space-x-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2.5 rounded-lg transition-colors w-full sm:w-auto"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-            </svg>
-            <span>AI Assistant</span>
-          </button>
+        </div>
+      </nav>
+
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        {/* Header */}
+        <div className="mb-10">
+          <h1 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">Bot Templates</h1>
+          <p className="text-gray-600 dark:text-gray-400 text-sm">
+            Choose a template to get started with your bot configuration
+          </p>
         </div>
 
-        {!selectedFile ? (
-          <div className="border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-xl p-6 sm:p-12">
-            <div className="text-center">
-              <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-              </svg>
-              <h2 className="mt-4 text-xl font-medium">Upload your presentation</h2>
-              <p className="mt-2 text-gray-600 dark:text-gray-400">
-                Drag and drop your PowerPoint file here, or click to browse
+        {/* General Purpose Bots Section */}
+        <div className="mb-12">
+          <h2 className="text-base font-medium text-gray-900 dark:text-white mb-5">General Purpose Bots</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+            {/* Code Assistant Card */}
+            <button className="group text-left bg-white dark:bg-gray-800/20 border border-gray-200/50 dark:border-gray-800/50 rounded-lg p-5 hover:border-purple-500/30 dark:hover:border-purple-500/30 transition-all hover:shadow-sm">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-1.5 bg-blue-50 dark:bg-blue-900/10 rounded-md">
+                  <svg className="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                  </svg>
+                </div>
+                <h3 className="text-sm font-medium text-gray-900 dark:text-white">Code Assistant</h3>
+              </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
+                A specialized bot for helping with programming and code review
               </p>
-              <div className="mt-6">
-                <input
-                  type="file"
-                  ref={fileInputRef}
-                  onChange={handleFileSelect}
-                  accept=".ppt,.pptx"
-                  className="hidden"
-                />
-                <button
-                  onClick={() => fileInputRef.current?.click()}
-                  className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg transition-colors w-full sm:w-auto"
-                >
-                  Choose File
-                </button>
-                <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                  Supported formats: PPT, PPTX
-                </p>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div className="bg-gray-50 dark:bg-[#1E293B] rounded-xl p-8">
-            <div className="flex items-start space-x-3 sm:space-x-4 mb-8 p-3 sm:p-4 bg-gray-50/50 dark:bg-[#2D3B4E]/30 rounded-lg">
-              <div className="flex-shrink-0 p-2.5 sm:p-3 bg-white dark:bg-[#2D3B4E] rounded-lg shadow-sm">
-                <svg className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </div>
-              <div className="min-w-0 flex-1">
-                <h3 className="text-sm sm:text-base font-medium truncate pr-4">{selectedFile.name}</h3>
-                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-0.5 sm:mt-1">
-                  {(selectedFile.size / (1024 * 1024)).toFixed(2)} MB • {selectedFile.type.split('.').pop()?.toUpperCase() || 'PPTX'}
-                </p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {/* Theme Selection */}
-              <div>
-                <label className="block text-sm font-medium mb-2">Theme</label>
-                <select className="w-full bg-white dark:bg-[#2D3B4E] border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500 transition-colors">
-                  <option>Modern</option>
-                  <option>Classic</option>
-                  <option>Minimal</option>
-                  <option>Bold</option>
-                </select>
-              </div>
-
-              {/* Color Scheme */}
-              <div>
-                <label className="block text-sm font-medium mb-2">Color Scheme</label>
-                <div className="flex space-x-2">
-                  <button className="w-8 h-8 rounded-full bg-blue-500" />
-                  <button className="w-8 h-8 rounded-full bg-green-500" />
-                  <button className="w-8 h-8 rounded-full bg-purple-500" />
-                  <button className="w-8 h-8 rounded-full bg-red-500" />
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400">
+                  <svg className="w-3.5 h-3.5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Pre-configured system prompt
+                </div>
+                <div className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400">
+                  <svg className="w-3.5 h-3.5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                  </svg>
+                  Optimized model settings
                 </div>
               </div>
+            </button>
 
-              {/* Font Selection */}
-              <div>
-                <label className="block text-sm font-medium mb-2">Font</label>
-                <select className="w-full bg-white dark:bg-[#2D3B4E] border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500 transition-colors">
-                  <option>Arial</option>
-                  <option>Helvetica</option>
-                  <option>Times New Roman</option>
-                  <option>Georgia</option>
-                </select>
+            {/* Research Assistant Card */}
+            <button className="group text-left bg-white dark:bg-gray-800/20 border border-gray-200/50 dark:border-gray-800/50 rounded-lg p-5 hover:border-purple-500/30 dark:hover:border-purple-500/30 transition-all hover:shadow-sm">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-1.5 bg-purple-50 dark:bg-purple-900/10 rounded-md">
+                  <svg className="w-4 h-4 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                </div>
+                <h3 className="text-sm font-medium text-gray-900 dark:text-white">Research Assistant</h3>
               </div>
-            </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
+                Helps with research, analysis, and summarization
+              </p>
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400">
+                  <svg className="w-3.5 h-3.5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Pre-configured system prompt
+                </div>
+                <div className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400">
+                  <svg className="w-3.5 h-3.5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                  </svg>
+                  Optimized model settings
+                </div>
+              </div>
+            </button>
 
-            <div className="mt-8 flex flex-col-reverse sm:flex-row justify-end gap-3">
-              <button
-                onClick={() => setSelectedFile(null)}
-                className="w-full sm:w-auto px-4 py-2.5 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-[#2D3B4E] transition-colors"
-              >
-                Cancel
-              </button>
-              <button className="w-full sm:w-auto px-4 py-2.5 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors">
-                Apply Changes
-              </button>
-            </div>
+            {/* Writing Assistant Card */}
+            <button className="group text-left bg-white dark:bg-gray-800/20 border border-gray-200/50 dark:border-gray-800/50 rounded-lg p-5 hover:border-purple-500/30 dark:hover:border-purple-500/30 transition-all hover:shadow-sm">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-1.5 bg-green-50 dark:bg-green-900/10 rounded-md">
+                  <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                  </svg>
+                </div>
+                <h3 className="text-sm font-medium text-gray-900 dark:text-white">Writing Assistant</h3>
+              </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
+                Assists with content creation and writing improvement
+              </p>
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400">
+                  <svg className="w-3.5 h-3.5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Pre-configured system prompt
+                </div>
+                <div className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400">
+                  <svg className="w-3.5 h-3.5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                  </svg>
+                  Optimized model settings
+                </div>
+              </div>
+            </button>
           </div>
-        )}
-      </div>
+        </div>
 
-      {/* AI Chat Box */}
-      <AiChatBox isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
+        {/* Pre-Sales & IT Consulting Bots Section */}
+        <div>
+          <h2 className="text-base font-medium text-gray-900 dark:text-white mb-5">Pre-Sales & IT Consulting Bots</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+            {/* Solution Architect Card */}
+            <button className="group text-left bg-white dark:bg-gray-800/20 border border-gray-200/50 dark:border-gray-800/50 rounded-lg p-5 hover:border-purple-500/30 dark:hover:border-purple-500/30 transition-all hover:shadow-sm">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-1.5 bg-blue-50 dark:bg-blue-900/10 rounded-md">
+                  <svg className="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                  </svg>
+                </div>
+                <h3 className="text-sm font-medium text-gray-900 dark:text-white">Solution Architect</h3>
+              </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
+                Expert in designing technical solutions and creating detailed proposals
+              </p>
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400">
+                  <svg className="w-3.5 h-3.5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Pre-configured system prompt
+                </div>
+                <div className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400">
+                  <svg className="w-3.5 h-3.5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                  </svg>
+                  Optimized model settings
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </main>
     </div>
   )
 }
